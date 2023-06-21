@@ -141,6 +141,10 @@ namespace Dictionary_C
         {
             var storage = (Storage)sender;
             var json = JsonSerializer.Serialize(storage.WeatherData);
+            if (!File.Exists("data.json"))
+            {
+                File.Create("data.json").Close();
+            }
             File.WriteAllText("data.json", json);
         }
 
