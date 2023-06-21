@@ -72,6 +72,8 @@ namespace Dictionary_C
         public event EventHandler DataSaved;
         public void SaveData()
         {
+            var data = ObjectExtensions.ToByteArray(WeatherData);
+            File.WriteAllBytes("data.bin", data);
             // сохранение данных
             DataSaved?.Invoke(this, EventArgs.Empty); // вызов события
         }

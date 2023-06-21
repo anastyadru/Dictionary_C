@@ -24,6 +24,10 @@ namespace Dictionary_C
                 
             return stream.ToArray(); // возвращен массив байт из потока stream с помощью метода ToArray()
         }
-        
+
+        public static byte[] ToByteArray(ObservableDictionary<string, WeatherData> weatherData)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
