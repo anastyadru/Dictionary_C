@@ -137,6 +137,12 @@ namespace Dictionary_C
             Console.WriteLine(result);
         }
         
+        /// <summary>
+        /// Обработчик события сохранения данных в файл.
+        /// Сохраняет данные хранилища в файл data.json.
+        /// </summary>
+        /// <param name="sender">Объект хранилища.</param>
+        /// <param name="e">Аргументы события.</param>
         private static void OnDataSaved(object sender, EventArgs e)
         {
             var storage = (Storage)sender;
@@ -149,9 +155,9 @@ namespace Dictionary_C
         }
 
         /// <summary>
-        /// Основной метод приложения
+        /// Главный метод программы.
         /// </summary>
-        /// <param name="args">Аргументы командной строки</param>
+        /// <param name="args">Аргументы командной строки.</param>
         private static async Task Main(string[] args)
         {
             var cityName = GetCityName();
