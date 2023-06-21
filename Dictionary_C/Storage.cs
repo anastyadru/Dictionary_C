@@ -55,6 +55,12 @@ namespace Dictionary_C
             return bytes.GetObject<T>();
         }
 
+        /// <summary>
+        /// Метод для получения объекта из массива байтов.
+        /// </summary>
+        /// <typeparam name="T">Тип объекта.</typeparam>
+        /// <param name="bytes">Массив байтов.</param>
+        /// <returns>Объект заданного типа.</returns>
         private static T GetObject<T>(this byte[] bytes)
         {
             using var memoryStream = new MemoryStream(bytes);
@@ -69,12 +75,18 @@ namespace Dictionary_C
             }
         }
 
+        /// <summary>
+        /// Событие, возникающее после сохранения данных.
+        /// </summary>
         public event EventHandler DataSaved;
+        
+        /// <summary>
+        /// Метод для сохранения данных в файл.
+        /// </summary>
         public void SaveData()
         {
             var data = ObjectExtensions.ToByteArray(WeatherData);
-            File.WriteAllBytes("data.bin", data);
-            // сохранение данных
+            File.WriteAllBytes("data.bin", data); // сохранение данных
             DataSaved?.Invoke(this, EventArgs.Empty); // вызов события
         }
     }
