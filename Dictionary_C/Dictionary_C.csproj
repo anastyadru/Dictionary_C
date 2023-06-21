@@ -126,7 +126,6 @@
         <Compile Include="Global.asax.cs">
             <DependentUpon>Global.asax</DependentUpon>
         </Compile>
-        <Compile Include="IDictionary.cs" />
         <Compile Include="ObjectExtensions.cs" />
         <Compile Include="ObservableDictionary.cs" />
         <Compile Include="Program.cs" />

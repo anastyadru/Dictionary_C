@@ -155,6 +155,13 @@ namespace Dictionary_C
             
             var storage = new Storage();
 
+            // загрузка данных из файла, если они есть
+            if (File.Exists("data.json"))
+            {
+                var json = File.ReadAllText("data.json");
+                storage.WeatherData = JsonSerializer.Deserialize<ObservableDictionary<string, WeatherData>>(json);
+            }
+            
             if (weatherType == 1)
             {
                 string url = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid=d6bfd60ae10dc578300a860f105ed749&units=metric&lang=ru";
