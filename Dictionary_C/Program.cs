@@ -89,6 +89,7 @@ namespace Dictionary_C
                 result += $"Влажность: {weatherData.Data.Humidity}%\n";
 
                 storage.WeatherData.Add(cityName, weatherData);
+                storage.DataSaved += OnDataSaved; // подписка на событие
                 storage.SaveData();
             }
             else
@@ -124,6 +125,7 @@ namespace Dictionary_C
                     result += $"Влажность: {forecast.Humidity}%\n";
 
                     storage.WeatherData.Add(cityName, weatherData);
+                    storage.DataSaved += OnDataSaved; // подписка на событие
                     storage.SaveData();
                 }
             }
@@ -133,6 +135,13 @@ namespace Dictionary_C
             }
 
             Console.WriteLine(result);
+        }
+        
+        private static void OnDataSaved(object sender, EventArgs e)
+        {
+            var storage = (Storage)sender;
+            var json = JsonSerializer.Serialize(storage.WeatherData);
+            File.WriteAllText("data.json", json);
         }
 
         /// <summary>
@@ -166,40 +175,4 @@ namespace Dictionary_C
             Console.ReadLine();
         }
     }
-} 
-
-
-
-
-        // Обработка событий при добавлении и удалении элементов из ObservableDictionary
-        storage.WeatherData.ItemAdded += CacheItemAdded;
-        storage.WeatherData.ItemRemoved += CacheItemRemoved;
-
-        void CacheItemAdded(object sender, KeyValuePair<string, WeatherData> e)
-        {
-            Console.WriteLine($"Добавлен элемент с ключом {e.Key} и значением {e.Value.Data}");
-        }
-
-        void CacheItemRemoved(object sender, KeyValuePair<string, WeatherData> e)
-        {
-            Console.WriteLine($"Удален элемент с ключом {e.Key} и значением {e.Value.Data}");
-        }
-
-        // Метод сериализации данных
-        void SerializeData(Dictionary<string, WeatherData> data, string path)
-        {
-            var formatter = new BinaryFormatter();
-            using var stream = new FileStream(path, FileMode.Create);
-            formatter.Serialize(stream, data.ToDictionary(x => x.Key, x => x.Value.Data));
-        }
-
-        // Метод десериализации данных
-        Dictionary<string, WeatherData> DeserializeData(string path)
-        {
-            var formatter = new BinaryFormatter();
-            using (var stream = new FileStream(path, FileMode.Open))
-            {
-                var data = (Dictionary<string, WeatherData.Data>)formatter.Deserialize(stream);
-                return data.ToDictionary(x => x.Key, x => new WeatherData { Data = x.Value });
-            }
-        }
+}
