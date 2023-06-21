@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -67,15 +68,12 @@ namespace Dictionary_C
                 throw new SerializationException("Failed to deserialize object", ex);
             }
         }
-        
-        public void SaveData(string filePath)
-        {
-            Storage.Save(WeatherData, filePath);
-        }
 
+        public event EventHandler DataSaved;
         public void SaveData()
         {
-            throw new NotImplementedException();
+            // сохранение данных
+            DataSaved?.Invoke(this, EventArgs.Empty); // вызов события
         }
     }
 }

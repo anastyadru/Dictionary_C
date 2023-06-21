@@ -37,7 +37,12 @@ namespace Dictionary_C
                 SaveData(); // вызов метода SaveData для сохранения данных
             }
         }
-        
+
+        private void SaveData()
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Удаляет элемент с указанным ключом из словаря.
         /// </summary>
