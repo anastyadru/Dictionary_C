@@ -23,6 +23,14 @@ namespace Dictionary_C
         public event EventHandler<KeyValuePair<TKey, TValue>> ItemRemoved;
         
         /// <summary>
+        /// Метод для сохранения данных в файл.
+        /// </summary>
+        private void SaveData()
+        {
+            throw new NotImplementedException();
+        }
+        
+        /// <summary>
         /// Добавляет элемент с указанным ключом и значением в словарь.
         /// </summary>
         /// <param name="key">Ключ добавляемого элемента.</param>
@@ -38,11 +46,6 @@ namespace Dictionary_C
             }
         }
 
-        private void SaveData()
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Удаляет элемент с указанным ключом из словаря.
         /// </summary>
@@ -54,6 +57,7 @@ namespace Dictionary_C
             {
                 TValue value = _cache[key]; // получено значение элемента
                 bool result = _cache.Remove(key);
+                
                 if (result) // вызвано событие ItemRemoved и передан в него удаленный элемент
                 {
                     ItemRemoved?.Invoke(this, new KeyValuePair<TKey, TValue>(key, value)); 
