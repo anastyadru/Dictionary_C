@@ -138,17 +138,16 @@ namespace Dictionary_C
         }
         
         /// <summary>
-        /// Обработчик события сохранения данных в файл.
-        /// Сохраняет данные хранилища в файл data.json.
+        /// Метод, вызываемый при сохранении данных в хранилище.
         /// </summary>
-        /// <param name="sender">Объект хранилища.</param>
+        /// <param name="sender">Объект-отправитель.</param>
         /// <param name="e">Аргументы события.</param>
         private static void OnDataSaved(object sender, EventArgs e)
         {
             var storage = (Storage)sender;
             Dictionary<string, WeatherData> dictionary = new Dictionary<string, WeatherData>();
             foreach (var pair in storage.WeatherData) dictionary.Add(pair.Key, pair.Value);
-            var json = JsonSerializer.Serialize(dictionary);
+            string json = JsonSerializer.Serialize(dictionary);
             if (!File.Exists("data.json"))
             {
                 File.Create("data.json").Close();
