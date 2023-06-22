@@ -146,7 +146,9 @@ namespace Dictionary_C
         private static void OnDataSaved(object sender, EventArgs e)
         {
             var storage = (Storage)sender;
-            var json = JsonSerializer.Serialize(storage.WeatherData.ToDictionary(x => x.Key, x => x.Value));
+            Dictionary<string, WeatherData> dictionary = new Dictionary<string, WeatherData>();
+            foreach (var pair in storage.WeatherData) dictionary.Add(pair.Key, pair.Value);
+            var json = JsonSerializer.Serialize(dictionary);
             if (!File.Exists("data.json"))
             {
                 File.Create("data.json").Close();
