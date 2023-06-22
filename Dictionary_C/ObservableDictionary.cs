@@ -35,7 +35,7 @@ namespace Dictionary_C
         /// </summary>
         /// <param name="key">Ключ добавляемого элемента.</param>
         /// <param name="value">Значение добавляемого элемента.</param>
-        public void Add(TKey key, TValue value)
+        public new void Add(TKey key, TValue value)
         {
             if (!_cache.ContainsKey(key))
             {
@@ -51,7 +51,7 @@ namespace Dictionary_C
         /// </summary>
         /// <param name="key">Ключ удаляемого элемента.</param>
         /// <returns>Значение true, если элемент был успешно удален из словаря; в противном случае — значение false.</returns>
-        public bool Remove(TKey key)
+        public new bool Remove(TKey key)
         {
             if (_cache.ContainsKey(key))
             {
