@@ -33,7 +33,10 @@ namespace Dictionary_C
         /// <returns>Объект типа T.</returns>
         public static T GetObject<T>(this byte[] data)
         {
-            
+            BinaryFormatter formatter = new BinaryFormatter(); // cоздан объект BinaryFormatter для десериализации данных
+            using MemoryStream stream = new MemoryStream(data);
+            return (T)formatter.Deserialize(stream); 
+            // десериализован объект из потока stream с помощью метода Deserialize объекта formatter и приведен к типу T
         }
 
         /// <summary>
