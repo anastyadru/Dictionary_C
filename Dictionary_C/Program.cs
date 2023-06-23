@@ -148,7 +148,7 @@ namespace Dictionary_C
             foreach (var pair in storage.WeatherData) dictionary.Add(pair.Key, pair.Value); 
             // Для каждой пары ключ-значение в словаре WeatherData объекта storage добавила соответствующую запись в словарь dictionary
             string json = JsonConvert.SerializeObject(dictionary); 
-            // Сериализовала словарь dictionary в формат JSON и сохраненила результат в переменную json
+            // Сериализовала словарь dictionary в формат JSON и сохранила результат в переменную json
             if (!File.Exists("data.json"))
             {
                 File.Create("data.json").Close(); // Если файл "data.json" не существует, он создается, а затем закрывается
@@ -168,10 +168,12 @@ namespace Dictionary_C
             var storage = new Storage();
 
             // загрузка данных из файла, если они есть
-            if (File.Exists("data.json"))
+            if (File.Exists("data.json")) // Проверила наличие файла "data.json" с помощью метода File.Exists()
             {
-                var json = File.ReadAllText("data.json");
+                var json = File.ReadAllText("data.json"); 
+                // Содержимое считалось с помощью метода File.ReadAllText() и сохранилось в переменную json
                 storage.WeatherData = JsonConvert.DeserializeObject<ObservableDictionary<string, WeatherData>>(json);
+                // Содержимое файла в формате JSON десериализовалось и сохранилось в свойство WeatherData объекта storage
             }
             
             if (weatherType == 1)
