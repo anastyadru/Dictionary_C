@@ -26,6 +26,17 @@ namespace Dictionary_C
         }
 
         /// <summary>
+        /// Получает объект типа T из массива байтов.
+        /// </summary>
+        /// <typeparam name="T">Тип объекта.</typeparam>
+        /// <param name="data">Массив байтов, представляющий сериализованные данные объекта.</param>
+        /// <returns>Объект типа T.</returns>
+        public static T GetObject<T>(this byte[] data)
+        {
+            
+        }
+
+        /// <summary>
         /// Метод для преобразования словаря погодных данных в массив байтов.
         /// </summary>
         /// <param name="weatherData">Словарь погодных данных.</param>
