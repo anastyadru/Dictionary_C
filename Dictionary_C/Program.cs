@@ -140,17 +140,20 @@ namespace Dictionary_C
         /// </summary>
         /// <param name="sender">Объект-отправитель.</param>
         /// <param name="e">Аргументы события.</param>
-        private static void OnDataSaved(object sender, EventArgs e) // Объявление метода OnDataSaved, который вызывается при сохранении данных в хранилище.
+        private static void OnDataSaved(object sender, EventArgs e) // Объявила метод, который вызывается при сохранении данных в хранилище
         {
-            var storage = (Storage)sender; // Приведение объекта-отправителя к типу Storage и сохранение его в переменной storage.
-            Dictionary<string, WeatherData> dictionary = new Dictionary<string, WeatherData>(); // Создание нового словаря с ключом типа string и значением типа WeatherData и сохранение его в переменной dictionary.
-            foreach (var pair in storage.WeatherData) dictionary.Add(pair.Key, pair.Value); // Для каждой пары ключ-значение в словаре WeatherData объекта storage добавляется соответствующая запись в словарь dictionary.
-            string json = JsonConvert.SerializeObject(dictionary); // Сериализация словаря dictionary в формат JSON и сохранение результата в переменной json.
+            var storage = (Storage)sender; 
+            // Привела объект-отправитель к типу Storage и сохраненила его в переменной storage
+            Dictionary<string, WeatherData> dictionary = new Dictionary<string, WeatherData>(); // Создала новый словарь и сохраненила его в переменной dictionary
+            foreach (var pair in storage.WeatherData) dictionary.Add(pair.Key, pair.Value); 
+            // Для каждой пары ключ-значение в словаре WeatherData объекта storage добавила соответствующую запись в словарь dictionary
+            string json = JsonConvert.SerializeObject(dictionary); 
+            // Сериализовала словарь dictionary в формат JSON и сохраненила результат в переменную json
             if (!File.Exists("data.json"))
             {
-                File.Create("data.json").Close(); // Если файл "data.json" не существует, он создается, а затем закрывается.
+                File.Create("data.json").Close(); // Если файл "data.json" не существует, он создается, а затем закрывается
             }
-            File.WriteAllText("data.json", json); // Запись сериализованных данных из переменной json в файл "data.json".
+            File.WriteAllText("data.json", json); // Записала сериализованные данные из переменной json в файл "data.json"
         }
 
         /// <summary>
