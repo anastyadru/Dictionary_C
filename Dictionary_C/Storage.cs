@@ -55,26 +55,6 @@ namespace Dictionary_C
         }
 
         /// <summary>
-        /// Метод для получения объекта из массива байтов.
-        /// </summary>
-        /// <typeparam name="T">Тип объекта.</typeparam>
-        /// <param name="bytes">Массив байтов.</param>
-        /// <returns>Объект заданного типа.</returns>
-        private static T GetObject<T>(this byte[] bytes)
-        {
-            using var memoryStream = new MemoryStream(bytes);
-            var binaryFormatter = new BinaryFormatter();
-            try
-            {
-                return (T)binaryFormatter.Deserialize(memoryStream);
-            }
-            catch (SerializationException ex)
-            {
-                throw new SerializationException("Failed to deserialize object", ex);
-            }
-        }
-
-        /// <summary>
         /// Событие, возникающее после сохранения данных.
         /// </summary>
         public event EventHandler DataSaved;
