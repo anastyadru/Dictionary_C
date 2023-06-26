@@ -52,20 +52,15 @@ namespace Dictionary_C
         }
 
         /// <summary>
-        /// Удаляет элемент с указанным ключом из словаря.
+        /// Удаляет элемент с указанным ключом из словаря и вызывает метод SaveData для сохранения изменений.
         /// </summary>
-        /// <param name="key">Ключ удаляемого элемента.</param>
-        /// <returns>Значение true, если элемент был успешно удален из словаря; в противном случае — значение false.</returns>
+        /// <param name="key">Ключ элемента, который нужно удалить.</param>
+        /// <returns>Значение true, если элемент был успешно удален; в противном случае — значение false.</returns>
         public new bool Remove(TKey key)
         {
-            if (_cache.ContainsKey(key))
-            {
-                var result = base.Remove(key);
-                SaveData(); // вызван метод SaveData после удаления элемента из словаря
-                return result;
-            }
-            
-            return false;
+            var result = base.Remove(key);
+            SaveData(); // вызван метод SaveData после удаления элемента из словаря
+            return result;
         }
         
         /// <summary>
