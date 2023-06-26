@@ -22,6 +22,8 @@ namespace Dictionary_C
         /// </summary>
         public event EventHandler<KeyValuePair<TKey, TValue>> ItemRemoved;
         
+        public event EventHandler DataSaved; // Объявила событие DataSaved
+        
         /// <summary>
         /// Метод для сохранения данных в файл.
         /// </summary>
