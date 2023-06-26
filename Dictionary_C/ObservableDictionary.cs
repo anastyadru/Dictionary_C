@@ -55,7 +55,9 @@ namespace Dictionary_C
         {
             if (_cache.ContainsKey(key))
             {
-                
+                var result = base.Remove(key);
+                SaveData(); // Вызов метода SaveData после удаления элемента из словаря
+                return result;
             }
             
             return false;
