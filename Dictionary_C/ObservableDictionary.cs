@@ -29,7 +29,7 @@ namespace Dictionary_C
         /// </summary>
         private void SaveData()
         {
-            throw new NotImplementedException();
+            DataSaved?.Invoke(this, EventArgs.Empty); // Вызов события DataSaved
         }
         
         /// <summary>
