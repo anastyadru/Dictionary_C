@@ -55,17 +55,7 @@ namespace Dictionary_C
         {
             if (_cache.ContainsKey(key))
             {
-                TValue value = _cache[key]; // получено значение элемента
-                bool result = _cache.Remove(key);
                 
-                if (result) // вызвано событие ItemRemoved и передан в него удаленный элемент
-                {
-                    ItemRemoved?.Invoke(this, new KeyValuePair<TKey, TValue>(key, value)); 
-                    
-                    // вызвано событие ItemAdded и передано в него пара ключ-значение, которая была удалена из словаря
-                }
-                
-                return result;
             }
             
             return false;
