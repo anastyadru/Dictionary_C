@@ -76,8 +76,6 @@ namespace Dictionary_C
         {
             var result = "";
 
-            var storage = new Storage();
-
             if (weatherData != null)
             {
                 result += $"Прогноз погоды в городе {cityName} на сегодня: \n";
@@ -85,17 +83,18 @@ namespace Dictionary_C
                 result += $"Температура ощущается на: {weatherData.Data.FeelsLike}°C\n";
                 result += $"Давление: {weatherData.Data.Pressure}Pa\n";
                 result += $"Влажность: {weatherData.Data.Humidity}%\n";
-
+                
+                Console.WriteLine(result);
+            
+                var storage = new Storage();
                 storage.WeatherData.Add(cityName, weatherData);
                 storage.DataSaved += OnDataSaved; // подписка на событие
                 storage.SaveData();
             }
             else
             {
-                result += $"Ошибка получения данных о погоде в городе {cityName}\n";
+                Console.WriteLine($"Ошибка получения данных о погоде в городе {cityName}\n");
             }
-
-            Console.WriteLine(result);
         }
 
         /// <summary>
@@ -124,6 +123,7 @@ namespace Dictionary_C
 
                 var storage = new Storage();
                 storage.WeatherData.Add(cityName, weatherData);
+                storage.DataSaved += OnDataSaved; // подписка на событие
                 storage.SaveData();
             }
             else
