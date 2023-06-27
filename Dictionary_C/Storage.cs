@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using Newtonsoft.Json;
 
 namespace Dictionary_C
 {
@@ -60,13 +61,27 @@ namespace Dictionary_C
         public event EventHandler DataSaved;
         
         /// <summary>
+        /// Событие, возникающее при удалении данных.
+        /// </summary>
+        public event EventHandler DataRemoved;
+        
+        /// <summary>
         /// Метод для сохранения данных в файл.
         /// </summary>
         public void SaveData()
         {
-            var data = ObjectExtensions.ToByteArray(WeatherData);
-            File.WriteAllBytes("data.bin", data); // сохранение данных
-            DataSaved?.Invoke(this, EventArgs.Empty); // вызов события
+            var json = JsonConvert.SerializeObject(WeatherData);
+            File.WriteAllText("data.json", json);
+            DataSaved?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Метод для удаления данных из файла.
+        /// </summary>
+        public void RemoveData(string cityName)
+        {
+            WeatherData.Remove(cityName);
+            DataRemoved?.Invoke(this, EventArgs.Empty);
         }
     }
 }
