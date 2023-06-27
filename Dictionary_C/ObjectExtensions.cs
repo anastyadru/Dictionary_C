@@ -16,8 +16,8 @@ namespace Dictionary_C
         public static byte[] GetBytes(this object data)
         {
             
-            BinaryFormatter formatter = new BinaryFormatter(); // cоздан объект BinaryFormatter для сериализации данных
-            using MemoryStream stream = new MemoryStream();
+            var formatter = new BinaryFormatter(); // cоздан объект BinaryFormatter для сериализации данных
+            using var stream = new MemoryStream();
             formatter.Serialize(stream, data); 
                 
             // сериализован объект data в поток stream с помощью метода Serialize объекта formatter
@@ -33,8 +33,8 @@ namespace Dictionary_C
         /// <returns>Объект типа T.</returns>
         public static T GetObject<T>(this byte[] data)
         {
-            BinaryFormatter formatter = new BinaryFormatter(); // cоздан объект BinaryFormatter для десериализации данных
-            using MemoryStream stream = new MemoryStream(data);
+            var formatter = new BinaryFormatter(); // cоздан объект BinaryFormatter для десериализации данных
+            using var stream = new MemoryStream(data);
             return (T)formatter.Deserialize(stream); 
             // десериализован объект из потока stream с помощью метода Deserialize объекта formatter и приведен к типу T
         }

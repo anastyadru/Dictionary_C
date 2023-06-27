@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -21,15 +20,14 @@ namespace Dictionary_C
         private static async Task<WeatherData> GetWeatherDataAsync(string url)
         {
             using var client = new HttpClient();
-            HttpResponseMessage response = await client.GetAsync(url);
+            var response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
             {
-                string responseBody = await response.Content.ReadAsStringAsync();
-                WeatherData weatherData = JsonConvert.DeserializeObject<WeatherData>(responseBody);
+                var responseBody = await response.Content.ReadAsStringAsync();
+                var weatherData = JsonConvert.DeserializeObject<WeatherData>(responseBody);
                 return weatherData;
             }
-
             return null;
         }
 
@@ -130,7 +128,7 @@ namespace Dictionary_C
         private static void OnDataSaved(object sender, EventArgs e)
         {
             var storage = (Storage)sender;
-            string json = JsonConvert.SerializeObject(storage.WeatherData);
+            var json = JsonConvert.SerializeObject(storage.WeatherData);
             File.WriteAllText("data.json", json);
         }
         
@@ -142,7 +140,7 @@ namespace Dictionary_C
         private static void OnDataRemoved(object sender, EventArgs e)
         {
             var storage = (Storage)sender;
-            string json = JsonConvert.SerializeObject(storage.WeatherData);
+            var json = JsonConvert.SerializeObject(storage.WeatherData);
             File.WriteAllText("data.json", json);
         }
 
@@ -168,8 +166,8 @@ namespace Dictionary_C
             
             if (weatherType == 1)
             {
-                string url = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid=d6bfd60ae10dc578300a860f105ed749&units=metric&lang=ru";
-                WeatherData weatherData = await GetWeatherDataAsync(url);
+                var url = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid=d6bfd60ae10dc578300a860f105ed749&units=metric&lang=ru";
+                var weatherData = await GetWeatherDataAsync(url);
                 PrintCurrentWeather(weatherData, cityName);
                 
                 storage.WeatherData.Add(cityName, weatherData);
@@ -179,8 +177,8 @@ namespace Dictionary_C
             }
             else if (weatherType == 5)
             {
-                string url = $"https://api.openweathermap.org/data/2.5/forecast?q={cityName}&appid=d6bfd60ae10dc578300a860f105ed749&units=metric&lang=ru";
-                WeatherData weatherData = await GetWeatherDataAsync(url);
+                var url = $"https://api.openweathermap.org/data/2.5/forecast?q={cityName}&appid=d6bfd60ae10dc578300a860f105ed749&units=metric&lang=ru";
+                var weatherData = await GetWeatherDataAsync(url);
                 PrintWeatherForecast(weatherData, cityName);
                 
                 storage.WeatherData.Add(cityName, weatherData);

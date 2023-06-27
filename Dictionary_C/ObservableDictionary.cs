@@ -68,7 +68,7 @@ namespace Dictionary_C
         /// </summary>
         /// <param name="sender">Источник события.</param>
         /// <param name="e">Аргументы события.</param>
-        private void Cache_ItemAdded(object sender, KeyValuePair<TKey, TValue> e)
+        private static void Cache_ItemAdded(object sender, KeyValuePair<TKey, TValue> e)
         {
             Console.WriteLine($"Добавлен элемент с ключом {e.Key} и значением {e.Value}");
         }
@@ -78,7 +78,7 @@ namespace Dictionary_C
         /// </summary>
         /// <param name="sender">Источник события.</param>
         /// <param name="e">Аргументы события.</param>
-        private void Cache_ItemRemoved(object sender, KeyValuePair<TKey, TValue> e)
+        private static void Cache_ItemRemoved(object sender, KeyValuePair<TKey, TValue> e)
         {
             Console.WriteLine($"Удален элемент с ключом {e.Key} и значением {e.Value}");
         }

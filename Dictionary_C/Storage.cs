@@ -39,19 +39,22 @@ namespace Dictionary_C
         /// <returns>Загруженный объект типа T.</returns>
         public static T Load<T>(string filePath)
         {
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException($"File {filePath} not found");
+            }
+
             using var fileStream = new FileStream(filePath, FileMode.Open);
             var binaryFormatter = new BinaryFormatter();
-
-            // создан экземпляр класса BinaryFormatter для десериализации данных из потока FileStream
-
-            var bytes = (byte[])binaryFormatter.Deserialize(fileStream); // вызван метод Deserialize() для получения объекта типа T из файла
-                
-            if (bytes == null)
+            
+            try
             {
-                throw new SerializationException("Failed to deserialize object from file.");
+                return (T)binaryFormatter.Deserialize(fileStream);
             }
-                
-            return bytes.GetObject<T>();
+            catch (SerializationException ex)
+            {
+                throw new SerializationException($"Error deserializing data from file {filePath}", ex);
+            }
         }
 
         /// <summary>
