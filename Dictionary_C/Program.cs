@@ -85,10 +85,6 @@ namespace Dictionary_C
                 result += $"Влажность: {weatherData.Data.Humidity}%\n";
                 
                 Console.WriteLine(result);
-            
-                var storage = new Storage();
-                storage.WeatherData.Add(cityName, weatherData);
-                storage.SaveData();
             }
             else
             {
@@ -119,10 +115,6 @@ namespace Dictionary_C
                     result += $"Влажность: {forecast.Humidity}%\n";
                 }
                 Console.WriteLine(result);
-
-                var storage = new Storage();
-                storage.WeatherData.Add(cityName, weatherData);
-                storage.SaveData();
             }
             else
             {
