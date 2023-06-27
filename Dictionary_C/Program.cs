@@ -181,12 +181,18 @@ namespace Dictionary_C
                 string url = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid=d6bfd60ae10dc578300a860f105ed749&units=metric&lang=ru";
                 WeatherData weatherData = await GetWeatherDataAsync(url);
                 PrintCurrentWeather(weatherData, cityName);
+                
+                storage.WeatherData.Add(cityName, weatherData);
+                storage.SaveData();
             }
             else if (weatherType == 5)
             {
                 string url = $"https://api.openweathermap.org/data/2.5/forecast?q={cityName}&appid=d6bfd60ae10dc578300a860f105ed749&units=metric&lang=ru";
                 WeatherData weatherData = await GetWeatherDataAsync(url);
                 PrintWeatherForecast(weatherData, cityName);
+                
+                storage.WeatherData.Add(cityName, weatherData);
+                storage.SaveData();
             }
             else
             {
