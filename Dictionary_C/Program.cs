@@ -137,20 +137,23 @@ namespace Dictionary_C
         /// </summary>
         /// <param name="sender">Объект-отправитель.</param>
         /// <param name="e">Аргументы события.</param>
-        private static void OnDataSaved(object sender, EventArgs e) // Объявила метод, который вызывается при сохранении данных в хранилище
+        private static void OnDataSaved(object sender, EventArgs e)
         {
-            var storage = (Storage)sender; 
-            // Привела объект-отправитель к типу Storage и сохраненила его в переменной storage
-            Dictionary<string, WeatherData> dictionary = new Dictionary<string, WeatherData>(); // Создала новый словарь и сохраненила его в переменной dictionary
-            foreach (var pair in storage.WeatherData) dictionary.Add(pair.Key, pair.Value); 
-            // Для каждой пары ключ-значение в словаре WeatherData объекта storage добавила соответствующую запись в словарь dictionary
-            string json = JsonConvert.SerializeObject(dictionary); 
-            // Сериализовала словарь dictionary в формат JSON и сохранила результат в переменную json
-            if (!File.Exists("data.json"))
-            {
-                File.Create("data.json").Close(); // Если файл "data.json" не существует, он создается, а затем закрывается
-            }
-            File.WriteAllText("data.json", json); // Записала сериализованные данные из переменной json в файл "data.json"
+            var storage = (Storage)sender;
+            string json = JsonConvert.SerializeObject(storage.WeatherData);
+            File.WriteAllText("data.json", json);
+        }
+        
+        /// <summary>
+        /// Обработчик события удаления данных из хранилища.
+        /// </summary>
+        /// <param name="sender">Отправитель события.</param>
+        /// <param name="e">Аргументы события.</param>
+        private static void OnDataRemoved(object sender, EventArgs e)
+        {
+            var storage = (Storage)sender;
+            string json = JsonConvert.SerializeObject(storage.WeatherData);
+            File.WriteAllText("data.json", json);
         }
 
         /// <summary>
