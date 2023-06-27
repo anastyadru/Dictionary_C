@@ -107,8 +107,6 @@ namespace Dictionary_C
         {
             var result = "";
 
-            var storage = new Storage();
-
             if (weatherData != null)
             {
                 result += $"Прогноз погоды в городе {cityName} на 5 дней: \n";
@@ -121,18 +119,17 @@ namespace Dictionary_C
                     result += $"Температура ощущается на: {forecast.FeelsLike}°C\n";
                     result += $"Давление: {forecast.Pressure}Pa\n";
                     result += $"Влажность: {forecast.Humidity}%\n";
-
-                    storage.WeatherData.Add(cityName, weatherData);
-                    storage.DataSaved += OnDataSaved; // подписка на событие
-                    storage.SaveData();
                 }
+                Console.WriteLine(result);
+
+                var storage = new Storage();
+                storage.WeatherData.Add(cityName, weatherData);
+                storage.SaveData();
             }
             else
             {
-                result += $"Ошибка получения данных о погоде в городе {cityName}\n";
+                Console.WriteLine($"Ошибка получения данных о погоде в городе {cityName}\n");
             }
-
-            Console.WriteLine(result);
         }
         
         /// <summary>
