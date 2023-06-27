@@ -88,7 +88,6 @@ namespace Dictionary_C
             
                 var storage = new Storage();
                 storage.WeatherData.Add(cityName, weatherData);
-                storage.DataSaved += OnDataSaved; // подписка на событие
                 storage.SaveData();
             }
             else
@@ -123,7 +122,6 @@ namespace Dictionary_C
 
                 var storage = new Storage();
                 storage.WeatherData.Add(cityName, weatherData);
-                storage.DataSaved += OnDataSaved; // подписка на событие
                 storage.SaveData();
             }
             else
@@ -183,6 +181,8 @@ namespace Dictionary_C
                 PrintCurrentWeather(weatherData, cityName);
                 
                 storage.WeatherData.Add(cityName, weatherData);
+                storage.DataSaved += OnDataSaved;
+                storage.DataRemoved += OnDataRemoved;
                 storage.SaveData();
             }
             else if (weatherType == 5)
@@ -192,6 +192,8 @@ namespace Dictionary_C
                 PrintWeatherForecast(weatherData, cityName);
                 
                 storage.WeatherData.Add(cityName, weatherData);
+                storage.DataSaved += OnDataSaved;
+                storage.DataRemoved += OnDataRemoved;
                 storage.SaveData();
             }
             else

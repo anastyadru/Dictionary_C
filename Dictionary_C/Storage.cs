@@ -26,10 +26,9 @@ namespace Dictionary_C
                 throw new ArgumentNullException(nameof(data));
             }
             
-            var bytes = data.GetBytes(); // сериализован объект в массив байтов с помощью метода GetBytes()
             using var fileStream = new FileStream(filePath, FileMode.Create);
             var binaryFormatter = new BinaryFormatter();
-            binaryFormatter.Serialize(fileStream, bytes); // вызван метод Serialize() для записи данных в файл 
+            binaryFormatter.Serialize(fileStream, data); 
         }
 
         /// <summary>
