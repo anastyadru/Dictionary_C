@@ -15,7 +15,6 @@ namespace Dictionary_C
         /// <returns>Массив байтов, представляющий сериализованные данные объекта.</returns>
         public static byte[] GetBytes(this object data)
         {
-            
             var formatter = new BinaryFormatter(); // cоздан объект BinaryFormatter для сериализации данных
             using var stream = new MemoryStream();
             formatter.Serialize(stream, data); 
