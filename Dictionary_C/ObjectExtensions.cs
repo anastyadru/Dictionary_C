@@ -15,13 +15,10 @@ namespace Dictionary_C
         /// <returns>Массив байтов, представляющий сериализованные данные объекта.</returns>
         public static byte[] GetBytes(this object data)
         {
-            var formatter = new BinaryFormatter(); // cоздан объект BinaryFormatter для сериализации данных
+            var formatter = new BinaryFormatter();
             using var stream = new MemoryStream();
-            formatter.Serialize(stream, data); 
-                
-            // сериализован объект data в поток stream с помощью метода Serialize объекта formatter
-                
-            return stream.ToArray(); // возвращен массив байт из потока stream с помощью метода ToArray()
+            formatter.Serialize(stream, data);
+            return stream.ToArray();
         }
 
         /// <summary>
