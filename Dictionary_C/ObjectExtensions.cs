@@ -29,20 +29,9 @@ namespace Dictionary_C
         /// <returns>Объект типа T.</returns>
         public static T GetObject<T>(this byte[] data)
         {
-            var formatter = new BinaryFormatter(); // cоздан объект BinaryFormatter для десериализации данных
+            var formatter = new BinaryFormatter();
             using var stream = new MemoryStream(data);
-            return (T)formatter.Deserialize(stream); 
-            // десериализован объект из потока stream с помощью метода Deserialize объекта formatter и приведен к типу T
-        }
-
-        /// <summary>
-        /// Метод для преобразования словаря погодных данных в массив байтов.
-        /// </summary>
-        /// <param name="weatherData">Словарь погодных данных.</param>
-        /// <returns>Массив байтов.</returns>
-        public static byte[] ToByteArray(ObservableDictionary<string, WeatherData> weatherData)
-        {
-            throw new System.NotImplementedException();
+            return (T)formatter.Deserialize(stream);
         }
     }
 }
