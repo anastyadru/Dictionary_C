@@ -128,7 +128,7 @@ namespace Dictionary_C
         private static void OnDataSaved(object sender, EventArgs e)
         {
             var storage = (Storage)sender;
-            var json = JsonConvert.SerializeObject(storage.WeatherData);
+            var json = JsonConvert.SerializeObject(storage.WeatherData, Formatting.Indented);
             File.WriteAllText("data.json", json);
         }
         
@@ -140,7 +140,8 @@ namespace Dictionary_C
         private static void OnDataRemoved(object sender, EventArgs e)
         {
             var storage = (Storage)sender;
-            var json = JsonConvert.SerializeObject(storage.WeatherData);
+            storage.WeatherData.Clear();
+            var json = JsonConvert.SerializeObject(storage.WeatherData, Formatting.Indented);
             File.WriteAllText("data.json", json);
         }
 
