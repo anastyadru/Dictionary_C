@@ -39,9 +39,9 @@ namespace Dictionary_C
         /// <returns>Загруженный объект типа T.</returns>
         public static T Load<T>(string filePath)
         {
-            if (!File.Exists(filePath))
+            if (!File.Exists("data.json"))
             {
-                throw new FileNotFoundException($"File {filePath} not found");
+                var json = File.ReadAllText("data.json");
             }
 
             using var fileStream = new FileStream(filePath, FileMode.Open);
