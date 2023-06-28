@@ -10,6 +10,11 @@ namespace Dictionary_C
     /// <typeparam name="TValue">Тип значения словаря.</typeparam>
     public abstract class ObservableDictionary<TKey, TValue> : Dictionary<TKey, TValue>
     {
+        ///<summary>
+        /// Кэш, хранящий пары ключ-значение.
+        ///</summary>
+        ///<typeparam name="TKey">Тип ключа.</typeparam>
+        ///<typeparam name="TValue">Тип значения.</typeparam>
         private readonly Dictionary<TKey, TValue> _cache = new Dictionary<TKey, TValue>();
 
         /// <summary>
@@ -59,7 +64,7 @@ namespace Dictionary_C
         public new bool Remove(TKey key)
         {
             var result = base.Remove(key);
-            SaveData(); // вызван метод SaveData после удаления элемента из словаря
+            SaveData();
             return result;
         }
         
