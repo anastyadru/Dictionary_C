@@ -39,9 +39,9 @@ namespace Dictionary_C
         /// <returns>Загруженный объект типа T.</returns>
         public static T Load<T>(string filePath)
         {
-            if (!File.Exists("data.json"))
+            if (!File.Exists(filePath))
             {
-                var json = File.ReadAllText("data.json");
+                throw new FileNotFoundException($"File {filePath} not found");
             }
 
             using var fileStream = new FileStream(filePath, FileMode.Open);
@@ -83,6 +83,8 @@ namespace Dictionary_C
         public void RemoveData(string cityName)
         {
             WeatherData.Remove(cityName);
+            var json = JsonConvert.SerializeObject(WeatherData);
+            File.WriteAllText("data.json", json);
             DataRemoved?.Invoke(this, EventArgs.Empty);
         }
     }
