@@ -50,6 +50,7 @@ namespace Dictionary_C
             if (!_cache.ContainsKey(key))
             {
                 _cache.Add(key, value);
+                base.Add(key, value);
                 ItemAdded?.Invoke(this, new KeyValuePair<TKey, TValue>(key, value)); // вызвано событие ItemAdded и передан в него добавленный элемент
                 Cache_ItemAdded(this, new KeyValuePair<TKey, TValue>(key, value)); // вызов метода Cache_ItemAdded для сохранения элемента в кэше
                 SaveData(); // вызов метода SaveData для сохранения данных
