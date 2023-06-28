@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace Dictionary_C
 {
-
+    
     /// <summary>
     /// Класс, содержащий точку входа в программу.
     /// </summary>

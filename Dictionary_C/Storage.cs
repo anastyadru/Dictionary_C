@@ -83,8 +83,7 @@ namespace Dictionary_C
         public void RemoveData(string cityName)
         {
             WeatherData.Remove(cityName);
-            var json = JsonConvert.SerializeObject(WeatherData);
-            File.WriteAllText("data.json", json);
+            SaveData();
             DataRemoved?.Invoke(this, EventArgs.Empty);
         }
     }
