@@ -11,6 +11,9 @@ namespace Dictionary_C
     /// </summary>
     public class Storage
     {
+        ///<summary>
+        /// Словарь, содержащий данные о погоде.
+        ///</summary>
         public ObservableDictionary<string, WeatherData> WeatherData { get; set; }
         
         /// <summary>
