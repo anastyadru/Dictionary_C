@@ -157,7 +157,12 @@ namespace Dictionary_C
             var weatherCache = new ObservableDictionary<string, WeatherData>();
             var storage = new Storage();
             
-            
+            weatherCache.ItemAdded += (sender, e) =>
+            {
+                var data = weatherCache[(string)sender];
+                var serializedData = JsonConvert.SerializeObject(data);
+                storage.SaveData(serializedData);
+            };
 
             if (File.Exists("data.json"))
             {
