@@ -16,11 +16,9 @@ namespace Dictionary_C
         public static byte[] GetBytes(this object data)
         {
             var formatter = new BinaryFormatter();
-            using (var stream = new MemoryStream())
-            {
-                formatter.Serialize(stream, data);
-                return stream.ToArray();
-            }
+            using var stream = new MemoryStream();
+            formatter.Serialize(stream, data);
+            return stream.ToArray();
         }
 
         /// <summary>
@@ -32,10 +30,8 @@ namespace Dictionary_C
         public static T GetObject<T>(this byte[] data)
         {
             var formatter = new BinaryFormatter();
-            using (var stream = new MemoryStream(data))
-            {
-                return (T)formatter.Deserialize(stream);
-            }
+            using var stream = new MemoryStream(data);
+            return (T)formatter.Deserialize(stream);
         }
     }
 }

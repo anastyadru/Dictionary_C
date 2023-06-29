@@ -154,12 +154,12 @@ namespace Dictionary_C
             var cityName = GetCityName();
             var weatherType = GetWeatherType();
             
-            var weatherCache = new ObservableDictionary<string, WeatherData>();
             var storage = new Storage();
-            
+            var weatherCache = new ObservableDictionary<string, WeatherData>();
+
             weatherCache.ItemAdded += (sender, e) =>
             {
-                var data = weatherCache[(string)sender];
+                var data = weatherCache[(string) sender];
                 var serializedData = JsonConvert.SerializeObject(data);
                 storage.SaveData(serializedData);
             };
