@@ -52,7 +52,6 @@ namespace Dictionary_C
                 _cache.Add(key, value);
                 base.Add(key, value);
                 ItemAdded?.Invoke(this, new KeyValuePair<TKey, TValue>(key, value));
-                Cache_ItemAdded(this, new KeyValuePair<TKey, TValue>(key, value));
                 SaveData();
             }
         }
@@ -67,6 +66,15 @@ namespace Dictionary_C
             var result = base.Remove(key);
             SaveData();
             return result;
+        }
+        
+        /// <summary>
+        /// Конструктор класса ObservableDictionary.
+        /// </summary>
+        public ObservableDictionary()
+        {
+            ItemAdded += Cache_ItemAdded;
+            ItemRemoved += Cache_ItemRemoved;
         }
         
         /// <summary>
@@ -88,15 +96,5 @@ namespace Dictionary_C
         {
             Console.WriteLine($"Удален элемент с ключом {e.Key} и значением {e.Value}");
         }
-        
-        /// <summary>
-        /// Конструктор класса ObservableDictionary.
-        /// </summary>
-        public ObservableDictionary()
-        {
-            ItemAdded += Cache_ItemAdded;
-            ItemRemoved += Cache_ItemRemoved;
-        }
-
     }
 }
