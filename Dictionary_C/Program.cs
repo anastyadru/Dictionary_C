@@ -153,16 +153,12 @@ namespace Dictionary_C
         {
             var cityName = GetCityName();
             var weatherType = GetWeatherType();
-            
             var storage = new Storage();
-
-            // загрузка данных из файла, если они есть
-            if (File.Exists("data.json")) // Проверила наличие файла "data.json" с помощью метода File.Exists()
+            
+            if (File.Exists("data.json"))
             {
-                var json = File.ReadAllText("data.json"); 
-                // Содержимое считалось с помощью метода File.ReadAllText() и сохранилось в переменную json
+                var json = File.ReadAllText("data.json");
                 storage.WeatherData = JsonConvert.DeserializeObject<ObservableDictionary<string, WeatherData>>(json);
-                // Содержимое файла в формате JSON десериализовалось и сохранилось в свойство WeatherData объекта storage
             }
             
             if (weatherType == 1)
