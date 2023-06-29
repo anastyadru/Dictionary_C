@@ -153,7 +153,12 @@ namespace Dictionary_C
         {
             var cityName = GetCityName();
             var weatherType = GetWeatherType();
+            var weatherCache = new ObservableDictionary<string, WeatherData>();
             var storage = new Storage();
+            
+            
+            
+            
             
             if (File.Exists("data.json"))
             {
