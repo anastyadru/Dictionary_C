@@ -67,16 +67,7 @@ namespace Dictionary_C
             SaveData();
             return result;
         }
-        
-        /// <summary>
-        /// Конструктор класса ObservableDictionary.
-        /// </summary>
-        public ObservableDictionary()
-        {
-            ItemAdded += Cache_ItemAdded;
-            ItemRemoved += Cache_ItemRemoved;
-        }
-        
+
         /// <summary>
         /// Метод-обработчик события ItemAdded.
         /// </summary>
@@ -95,6 +86,15 @@ namespace Dictionary_C
         private static void Cache_ItemRemoved(object sender, KeyValuePair<TKey, TValue> e)
         {
             Console.WriteLine($"Удален элемент с ключом {e.Key} и значением {e.Value}");
+        }
+        
+        /// <summary>
+        /// Конструктор класса ObservableDictionary.
+        /// </summary>
+        public ObservableDictionary()
+        {
+            ItemAdded += Cache_ItemAdded;
+            ItemRemoved += Cache_ItemRemoved;
         }
     }
 }
