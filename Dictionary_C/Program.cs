@@ -102,9 +102,9 @@ namespace Dictionary_C
             if (weatherData != null)
             {
                 result += $"Прогноз погоды в городе {cityName} на 5 дней: \n";
-                for (int i = 0; i < weatherData.ForecastList.Count; i++)
+                for (var i = 0; i < weatherData.ForecastList.Count; i++)
                 {
-                    Forecast forecast = weatherData.ForecastList[i];
+                    var forecast = weatherData.ForecastList[i];
                     result += $"День {i + 1}: \n";
                     result += $"Дата: {forecast.Date}\n";
                     result += $"Температура: {forecast.Temp}°C\n";
@@ -161,7 +161,7 @@ namespace Dictionary_C
             {
                 var data = weatherCache[(string) sender];
                 var serializedData = JsonConvert.SerializeObject(data);
-                storage.SaveData(serializedData);
+                storage.SaveData();
             };
 
             if (File.Exists("data.json"))
