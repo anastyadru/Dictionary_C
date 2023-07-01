@@ -160,7 +160,7 @@ namespace Dictionary_C
             weatherCache.ItemAdded += (sender,e) =>
             {
                 var data = weatherCache[(string) sender];
-                var serializedData = JsonConvert.SerializeObject(data);
+                JsonConvert.SerializeObject(data);
                 storage.SaveData();
             };
 
