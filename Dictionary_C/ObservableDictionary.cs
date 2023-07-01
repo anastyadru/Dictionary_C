@@ -47,13 +47,11 @@ namespace Dictionary_C
         /// <param name="value">Значение добавляемого элемента.</param>
         public new void Add(TKey key, TValue value)
         {
-            if (!_cache.ContainsKey(key))
-            {
-                _cache.Add(key, value);
-                base.Add(key, value);
-                ItemAdded?.Invoke(this, new KeyValuePair<TKey, TValue>(key, value));
-                SaveData();
-            }
+            if (_cache.ContainsKey(key)) return;
+            _cache.Add(key, value);
+            base.Add(key, value);
+            ItemAdded?.Invoke(this, new KeyValuePair<TKey, TValue>(key, value));
+            SaveData();
         }
 
         /// <summary>
