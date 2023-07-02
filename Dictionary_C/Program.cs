@@ -157,10 +157,11 @@ namespace Dictionary_C
             var storage = new Storage();
             var weatherCache = new ObservableDictionary<string, WeatherData>();
 
-            weatherCache.ItemAdded += (sender,_) =>
+            weatherCache.ItemAdded += (sender,e) =>
             {
                 var data = weatherCache[(string)sender];
-                storage.SaveData(data);
+                storage.WeatherData.Add(data.CityName, data);
+                storage.SaveData();
             };
 
             if (File.Exists("data.json"))
@@ -176,9 +177,6 @@ namespace Dictionary_C
                 PrintCurrentWeather(weatherData, cityName);
                 
                 weatherCache.Add(cityName, weatherData);
-                storage.DataSaved += OnDataSaved;
-                storage.DataRemoved += OnDataRemoved;
-                storage.SaveData(weatherData);
             }
             else if (weatherType == 5)
             {
@@ -187,9 +185,6 @@ namespace Dictionary_C
                 PrintWeatherForecast(weatherData, cityName);
                 
                 storage.WeatherData.Add(cityName, weatherData);
-                storage.DataSaved += OnDataSaved;
-                storage.DataRemoved += OnDataRemoved;
-                storage.SaveData(weatherData);
             }
             else
             {
