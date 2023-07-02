@@ -74,7 +74,7 @@ namespace Dictionary_C
         /// Метод для сохранения данных в файл.
         /// </summary>
         /// <param name="weatherData"></param>
-        public void SaveData(ObservableDictionary<string, WeatherData> weatherData)
+        public void SaveData()
         {
             var json = JsonConvert.SerializeObject(WeatherData);
             File.WriteAllText("data.json", json);
@@ -87,7 +87,7 @@ namespace Dictionary_C
         public void RemoveData(string cityName)
         {
             WeatherData.Remove(cityName);
-            SaveData(WeatherData);
+            SaveData();
             DataRemoved?.Invoke(this, EventArgs.Empty);
         }
     }
