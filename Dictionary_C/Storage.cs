@@ -87,7 +87,7 @@ namespace Dictionary_C
         public void RemoveData(string cityName)
         {
             WeatherData.Remove(cityName);
-            SaveData();
+            SaveData(null);
             DataRemoved?.Invoke(this, EventArgs.Empty);
         }
     }

@@ -159,9 +159,8 @@ namespace Dictionary_C
 
             weatherCache.ItemAdded += (sender,_) =>
             {
-                var data = weatherCache[(string) sender];
-                JsonConvert.SerializeObject(data);
-                storage.SaveData();
+                var data = weatherCache[(string)sender];
+                storage.SaveData(data);
             };
 
             if (File.Exists("data.json"))
@@ -190,7 +189,7 @@ namespace Dictionary_C
                 storage.WeatherData.Add(cityName, weatherData);
                 storage.DataSaved += OnDataSaved;
                 storage.DataRemoved += OnDataRemoved;
-                storage.SaveData();
+                storage.SaveData(weatherData);
             }
             else
             {
