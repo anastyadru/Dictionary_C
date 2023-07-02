@@ -160,14 +160,13 @@ namespace Dictionary_C
             weatherCache.ItemAdded += (sender,_) =>
             {
                 var data = weatherCache[(string) sender];
-                JsonConvert.SerializeObject(data);
                 storage.SaveData();
             };
 
             if (File.Exists("data.json"))
             {
                 var json = File.ReadAllText("data.json");
-                storage.WeatherData = JsonConvert.DeserializeObject<ObservableDictionary<string, WeatherData>>(json);
+                storage.LoadData(json);
             }
             
             if (weatherType == 1)
