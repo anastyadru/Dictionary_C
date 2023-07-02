@@ -87,8 +87,13 @@ namespace Dictionary_C
         public void RemoveData(string cityName)
         {
             WeatherData.Remove(cityName);
-            SaveData(null);
+            SaveData(WeatherData);
             DataRemoved?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void SaveData(ObservableDictionary<string, WeatherData> weatherData)
+        {
+            throw new NotImplementedException();
         }
     }
 }
