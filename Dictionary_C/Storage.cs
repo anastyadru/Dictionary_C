@@ -69,11 +69,12 @@ namespace Dictionary_C
         /// Событие, возникающее при удалении данных.
         /// </summary>
         public event EventHandler DataRemoved;
-        
+
         /// <summary>
         /// Метод для сохранения данных в файл.
         /// </summary>
-        public void SaveData()
+        /// <param name="weatherData"></param>
+        public void SaveData(WeatherData weatherData)
         {
             var json = JsonConvert.SerializeObject(WeatherData);
             File.WriteAllText("data.json", json);
