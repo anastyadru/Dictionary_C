@@ -120,30 +120,7 @@ namespace Dictionary_C
             }
         }
         
-        /// <summary>
-        /// Метод, вызываемый при сохранении данных в хранилище.
-        /// </summary>
-        /// <param name="sender">Объект-отправитель.</param>
-        /// <param name="e">Аргументы события.</param>
-        private static void OnDataSaved(object sender, EventArgs e)
-        {
-            var storage = (Storage)sender;
-            var json = JsonConvert.SerializeObject(storage.WeatherData, Formatting.Indented);
-            File.WriteAllText("data.json", json);
-        }
         
-        /// <summary>
-        /// Обработчик события удаления данных из хранилища.
-        /// </summary>
-        /// <param name="sender">Отправитель события.</param>
-        /// <param name="e">Аргументы события.</param>
-        private static void OnDataRemoved(object sender, EventArgs e)
-        {
-            var storage = (Storage)sender;
-            storage.WeatherData.Clear();
-            var json = JsonConvert.SerializeObject(storage.WeatherData, Formatting.Indented);
-            File.WriteAllText("data.json", json);
-        }
 
         /// <summary>
         /// Главный метод программы.
