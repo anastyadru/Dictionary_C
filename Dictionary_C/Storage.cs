@@ -78,6 +78,7 @@ namespace Dictionary_C
         {
             var json = JsonConvert.SerializeObject(WeatherData, Formatting.Indented);
             File.WriteAllText("data.json", json);
+            DataSaved?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
