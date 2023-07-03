@@ -183,7 +183,9 @@ namespace Dictionary_C
             {
                 Console.WriteLine("Некорректный ввод. Пожалуйста, укажите, на сколько дней Вы хотите знать прогноз погоды: на 1 день или на 5 дней.");
             }
-
+            
+            storage.SaveData();
+            
             Console.ReadLine();
         }
     }
