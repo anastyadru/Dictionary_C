@@ -76,9 +76,8 @@ namespace Dictionary_C
         /// <param name="weatherData"></param>
         public void SaveData()
         {
-            var json = JsonConvert.SerializeObject(WeatherData);
+            var json = JsonConvert.SerializeObject(WeatherData, Formatting.Indented);
             File.WriteAllText("data.json", json);
-            DataSaved?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
