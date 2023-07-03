@@ -120,7 +120,17 @@ namespace Dictionary_C
             }
         }
         
-        
+        /// <summary>
+        /// Обработчик события добавления элемента в словарь WeatherData.
+        /// </summary>
+        /// <param name="sender">Отправитель события.</param>
+        /// <param name="e">Аргументы события.</param>
+        private static void OnItemAdded(object sender, ItemAddedEventArgs<string, WeatherData> e)
+        {
+            var storage = (Storage)sender;
+            storage.WeatherData.Add(e.Key, e.Value);
+            storage.SaveData();
+        }
 
         /// <summary>
         /// Главный метод программы.
@@ -139,6 +149,8 @@ namespace Dictionary_C
                 var json = File.ReadAllText("data.json");
                 storage.WeatherData = JsonConvert.DeserializeObject<ObservableDictionary<string, WeatherData>>(json);
             }
+            
+            weatherCache.ItemAdded += OnItemAdded;
             
             if (weatherType == 1)
             {
