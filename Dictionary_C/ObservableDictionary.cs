@@ -10,13 +10,7 @@ namespace Dictionary_C
     /// <typeparam name="TValue">Тип значения словаря.</typeparam>
     public class ObservableDictionary<TKey, TValue> : Dictionary<TKey, TValue>
     {
-        ///<summary>
-        /// Кэш, хранящий пары ключ-значение.
-        ///</summary>
-        ///<typeparam name="TKey">Тип ключа.</typeparam>
-        ///<typeparam name="TValue">Тип значения.</typeparam>
-        private readonly Dictionary<TKey, TValue> _cache = new Dictionary<TKey, TValue>();
-
+        
         /// <summary>
         /// Событие, возникающее при добавлении элемента в словарь.
         /// </summary>
@@ -52,6 +46,7 @@ namespace Dictionary_C
         {
             base.Add(key, value);
             ItemAdded?.Invoke(this, new KeyValuePair<TKey, TValue>(key, value));
+            SaveData();
         }
 
         /// <summary>

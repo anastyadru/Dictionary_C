@@ -130,7 +130,6 @@ namespace Dictionary_C
         {
             var storage = (Storage)sender;
             storage.WeatherData.Add(e.Key, e.Value);
-            storage.SaveData();
         }
 
         /// <summary>
