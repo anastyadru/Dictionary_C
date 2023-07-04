@@ -159,7 +159,7 @@ namespace Dictionary_C
                 var weatherData = await GetWeatherDataAsync(url);
                 PrintCurrentWeather(weatherData, cityName);
                 
-                weatherCache.Add(cityName, weatherData);
+                storage.WeatherData.Add(cityName, weatherData);
             }
             else if (weatherType == 5)
             {
