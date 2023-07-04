@@ -31,7 +31,10 @@ namespace Dictionary_C
         /// Событие, которое вызывается при сохранении данных.
         /// </summary>
         public event EventHandler DataSaved;
-        
+
+        public string Key { get; set; }
+        public WeatherData Value { get; set; }
+
         /// <summary>
         /// Сохраняет данные и вызывает событие DataSaved.
         /// </summary>
