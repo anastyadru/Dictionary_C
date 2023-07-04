@@ -150,6 +150,8 @@ namespace Dictionary_C
                 storage.WeatherData = JsonConvert.DeserializeObject<ObservableDictionary<string, WeatherData>>(json);
             }
             
+            weatherCache.ItemAdded += OnItemAdded;
+            
             if (weatherType == 1)
             {
                 var url = $"https://api.openweathermap.org/data/2.5/weather?q={cityName}&appid=d6bfd60ae10dc578300a860f105ed749&units=metric&lang=ru";
