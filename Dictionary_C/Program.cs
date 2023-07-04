@@ -125,7 +125,7 @@ namespace Dictionary_C
         /// </summary>
         /// <param name="sender">Отправитель события.</param>
         /// <param name="e">Аргументы события.</param>
-        private static void OnItemAdded(object sender, ItemAddedEventArgs<string, WeatherData> e)
+        private static void OnItemAdded(object sender, ObservableDictionary<string, WeatherData> e)
         {
             var storage = (Storage)sender;
             storage.WeatherData.Add(e.Key, e.Value);
@@ -149,8 +149,6 @@ namespace Dictionary_C
                 var json = File.ReadAllText("data.json");
                 storage.WeatherData = JsonConvert.DeserializeObject<ObservableDictionary<string, WeatherData>>(json);
             }
-            
-            weatherCache.ItemAdded += OnItemAdded;
             
             if (weatherType == 1)
             {
