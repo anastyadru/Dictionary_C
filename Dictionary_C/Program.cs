@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -125,7 +126,7 @@ namespace Dictionary_C
         /// </summary>
         /// <param name="sender">Отправитель события.</param>
         /// <param name="e">Аргументы события.</param>
-        private static void OnItemAdded(object sender, ObservableDictionary<string, WeatherData> e)
+        private static void OnItemAdded(object sender, KeyValuePair<string, WeatherData> e)
         {
             var storage = (Storage)sender;
             storage.WeatherData.Add(e.Key, e.Value);
